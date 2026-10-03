@@ -1,0 +1,13 @@
+Windows Registry Editor Version 5.00
+
+; ================================================
+; 一键还原 HTML 默认打开方式
+; ================================================
+
+[-HKEY_CURRENT_USER\Software\Classes\.html]
+[-HKEY_CURRENT_USER\Software\Classes\.htm]
+[-HKEY_CURRENT_USER\Software\Classes\.shtml]
+[-HKEY_CURRENT_USER\Software\Classes\.xhtml]
+[-HKEY_CURRENT_USER\Software\Classes\http\shell]
+[-HKEY_CURRENT_USER\Software\Classes\https\shell]
+[-HKEY_CURRENT_USER\Software\Classes\microsoft-edge]

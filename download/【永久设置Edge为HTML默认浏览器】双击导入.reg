@@ -1,0 +1,47 @@
+Windows Registry Editor Version 5.00
+
+; ================================================
+; 一键把 .html / .htm 默认打开方式永久改成 Microsoft Edge
+; 使用方法：右键 → 合并（Merge），弹提示点"是"，然后重启电脑即可。
+; 如要还原：双击【还原HTML默认打开方式】.reg，或走 Windows 设置 → 应用 → 默认应用。
+; ================================================
+
+; 1) 注册 MSEdgeHTM ProgID
+[HKEY_LOCAL_MACHINE\SOFTWARE\Classes\MSEdgeHTM]
+@="Microsoft Edge HTML Document"
+"AppUserModelId"="Microsoft.MicrosoftEdge"
+"FriendlyTypeName"="@C:\\Windows\\System32\\ieframe.dll,-190"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Classes\MSEdgeHTM\DefaultIcon]
+@=hex(2):25,00,53,00,79,00,73,00,74,00,65,00,6d,00,52,00,6f,00,6f,00,74,00,25,00,5c,00,53,00,79,00,73,00,74,00,65,00,6d,00,33,00,32,00,5c,00,6d,00,73,00,65,00,64,00,67,00,65,00,2e,00,64,00,6c,00,6c,00,2c,00,2d,00,32,00,34,00,00,00
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Classes\MSEdgeHTM\shell\open\command]
+@="\"C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe\" --single-argument %1"
+
+; 2) 将 .html / .htm / .shtml / .xhtml 默认关联到 MSEdgeHTM（HKCU 覆盖 HKLM，不需要管理员权限也生效）
+[HKEY_CURRENT_USER\Software\Classes\.html]
+@="MSEdgeHTM"
+
+[HKEY_CURRENT_USER\Software\Classes\.htm]
+@="MSEdgeHTM"
+
+[HKEY_CURRENT_USER\Software\Classes\.shtml]
+@="MSEdgeHTM"
+
+[HKEY_CURRENT_USER\Software\Classes\.xhtml]
+@="MSEdgeHTM"
+
+; 3) 把 http:// https:// 协议也强制指向 Edge
+[HKEY_CURRENT_USER\Software\Classes\http\shell\open\command]
+@="\"C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe\" --single-argument %1"
+
+[HKEY_CURRENT_USER\Software\Classes\https\shell\open\command]
+@="\"C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe\" --single-argument %1"
+
+; 4) 注册 microsoft-edge: 协议
+[HKEY_CURRENT_USER\Software\Classes\microsoft-edge]
+@="URL:Microsoft Edge Protocol"
+"URL Protocol"=""
+
+[HKEY_CURRENT_USER\Software\Classes\microsoft-edge\shell\open\command]
+@="\"C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe\" --single-argument %1"
